@@ -30,14 +30,13 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text("計算"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Textfield(),
           ButtonsField(),
-          RigidTextField(),
         ],
       ),
     );
@@ -71,7 +70,7 @@ class ButtonsField extends StatelessWidget {
       width: 500,
       height: 500,
       child: GridView.count(
-          crossAxisCount: 3,
+          crossAxisCount: 4,
           children: numbers.map((e) => GridTile(
             child: Button(num: e["num"]!),
           ),
@@ -93,27 +92,15 @@ class Button extends StatelessWidget {
           model.calculation(num);
         },
         child: Container(
-          color: model.check == false ? Colors.white70 : Colors.lightBlue,
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black54,width: 1)
+          ),
           child: Center(
             child: Text(
                 num
             ),
           ),
         ),
-      );
-    });
-  }
-}
-
-class RigidTextField extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<Calculate1>(builder: (context, model, child) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text("${model.rigidResult}"),
-        ],
       );
     });
   }

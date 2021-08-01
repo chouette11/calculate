@@ -6,9 +6,11 @@ class Calculate1 extends ChangeNotifier {
   String result = "";
   String rigidResult = "";
   bool check = false;
+  String results = "";
+  String operator = "";
 
   calculation(String number) {
-    if (number != "*=" && number != "!") {
+    if (number != "=" && number != "C" && number != "+" && number != "-" && number != "÷" && number != "×") {
       check == false ? result += number : rigidResult += number;
       notifyListeners();
     }
@@ -16,16 +18,24 @@ class Calculate1 extends ChangeNotifier {
       check == false ? result = "" : rigidResult = "";
       notifyListeners();
     }
-    if (number == "*=") {
-      result = (double.parse(result) * int.parse(rigidResult)).toStringAsFixed(2);
+    if (number == "+" || number == "-" || number == "÷" || number == "×") {
+      results = result;
+      result = "";
+      operator = number;
       notifyListeners();
     }
-    if (number == "!") {
-      if (check == false) {
-        check = true;
+    if (number == "=") {
+      if (operator == "+"){
+        result = (int.parse(result) + int.parse(results)).toString();
         notifyListeners();
-      } else {
-        check = false;
+      } else if (operator == "-"){
+        result = (int.parse(results) - int.parse(result)).toString();
+        notifyListeners();
+      } else if (operator == "×"){
+        result = (int.parse(result) * int.parse(results)).toString();
+        notifyListeners();
+      } else if (operator == "÷"){
+        result = (int.parse(results) / int.parse(result)).toString();
         notifyListeners();
       }
     }
