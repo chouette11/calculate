@@ -27,19 +27,19 @@ class Calculate1 extends ChangeNotifier {
     }
     if (number == "=") {
       if (operator == "+"){
-        result = (int.parse(result) + int.parse(results)).toString();
+        result = (double.parse(result) + double.parse(results)).toString();
         operator = "";
         notifyListeners();
       } else if (operator == "-"){
-        result = (int.parse(results) - int.parse(result)).toString();
+        result = (double.parse(results) - double.parse(result)).toString();
         operator = "";
         notifyListeners();
       } else if (operator == "×"){
-        result = (int.parse(result) * int.parse(results)).toString();
+        result = (double.parse(result) * double.parse(results)).toString();
         operator = "";
         notifyListeners();
       } else if (operator == "÷"){
-        result = (int.parse(results) / int.parse(result)).toString();
+        result = (double.parse(results) / double.parse(result)).toString();
         operator = "";
         notifyListeners();
       }
