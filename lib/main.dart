@@ -33,9 +33,9 @@ class MyHomePage extends StatelessWidget {
         title: Text("計算"),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          Textfield(),
+          ResultField(),
           ButtonsField(),
         ],
       ),
@@ -43,18 +43,39 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class Textfield extends StatelessWidget {
+class ResultField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<Calculate1>(builder: (context, model, child) {
       double screenSizeWidth = MediaQuery.of(context).size.width;
       return Container(
+        margin: EdgeInsets.only(right: 5),
         width: screenSizeWidth,
-        height: 50,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+        height: 120,
+        child: Column(
           children: [
-            Text("${model.result}"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  "${model.operator}",
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  "${model.result}",
+                  style:TextStyle(
+                    fontSize: 60,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       );
@@ -67,12 +88,13 @@ class ButtonsField extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenSizeWidth = MediaQuery.of(context).size.width;
     return Container(
-      width: 500,
-      height: 500,
+      width: screenSizeWidth,
+      height: screenSizeWidth,
       child: GridView.count(
           crossAxisCount: 4,
-          children: numbers.map((e) => GridTile(
-            child: Button(num: e["num"]!),
+          children: ["7","8","9","÷","4","5","6","×","1","2","3","-","0","=","C","+",]
+              .map((e) => GridTile(
+            child: Button(num: e),
           ),
           ).toList()
       ),
@@ -93,7 +115,7 @@ class Button extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.black54,width: 1)
+              border: Border.all(color: Colors.black54,width: 1)
           ),
           child: Center(
             child: Text(

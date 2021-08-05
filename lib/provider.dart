@@ -16,6 +16,7 @@ class Calculate1 extends ChangeNotifier {
     }
     if (number == "C") {
       check == false ? result = "" : rigidResult = "";
+      operator = "";
       notifyListeners();
     }
     if (number == "+" || number == "-" || number == "÷" || number == "×") {
@@ -27,15 +28,19 @@ class Calculate1 extends ChangeNotifier {
     if (number == "=") {
       if (operator == "+"){
         result = (int.parse(result) + int.parse(results)).toString();
+        operator = "";
         notifyListeners();
       } else if (operator == "-"){
         result = (int.parse(results) - int.parse(result)).toString();
+        operator = "";
         notifyListeners();
       } else if (operator == "×"){
         result = (int.parse(result) * int.parse(results)).toString();
+        operator = "";
         notifyListeners();
       } else if (operator == "÷"){
         result = (int.parse(results) / int.parse(result)).toString();
+        operator = "";
         notifyListeners();
       }
     }
